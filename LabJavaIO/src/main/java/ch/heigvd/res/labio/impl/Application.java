@@ -5,15 +5,17 @@ import ch.heigvd.res.labio.impl.transformers.CompleteFileTransformer;
 import ch.heigvd.res.labio.interfaces.IApplication;
 import ch.heigvd.res.labio.interfaces.IFileExplorer;
 import ch.heigvd.res.labio.interfaces.IFileVisitor;
-import ch.heigvd.res.labio.quotes.QuoteClient;
 import ch.heigvd.res.labio.quotes.Quote;
+import ch.heigvd.res.labio.quotes.QuoteClient;
+import org.apache.commons.io.FileUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.commons.io.FileUtils;
 
 /**
  *
@@ -83,17 +85,25 @@ public class Application implements IApplication {
     clearOutputDirectory();
     QuoteClient client = new QuoteClient();
     for (int i = 0; i < numberOfQuotes; i++) {
-      Quote quote = client.fetchQuote();
-      /* There is a missing piece here!
-       * As you can see, this method handles the first part of the lab. It uses the web service
-       * client to fetch quotes. We have removed a single line from this method. It is a call to
-       * one method provided by this class, which is responsible for storing the content of the
-       * quote in a text file (and for generating the directories based on the tags).
-       */
-      LOG.info("Received a new joke with " + quote.getTags().size() + " tags.");
-      for (String tag : quote.getTags()) {
-        LOG.info("> " + tag);
+      Quote quote = null;
+      try {
+        quote = client.fetchQuote();
+      } catch (URISyntaxException | InterruptedException e) {
+        e.printStackTrace();
       }
+      if (quote != null) {
+        /* There is a missing piece here!
+         * As you can see, this method handles the first part of the lab. It uses the web service
+         * client to fetch quotes. We have removed a single line from this method. It is a call to
+         * one method provided by this class, which is responsible for storing the content of the
+         * quote in a text file (and for generating the directories based on the tags).
+         */
+        LOG.info("Received a new joke with " + quote.getTags().size() + " tags.");
+        for (String tag : quote.getTags()) {
+          LOG.info("> " + tag);
+        }
+      }
+
     }
   }
   
