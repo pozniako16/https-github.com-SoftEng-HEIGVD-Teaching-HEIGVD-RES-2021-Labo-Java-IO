@@ -1,11 +1,12 @@
 package ch.heigvd.res.labio.impl.transformers;
 
+import org.apache.commons.io.FileUtils;
+import org.junit.jupiter.api.Test;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import org.apache.commons.io.FileUtils;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

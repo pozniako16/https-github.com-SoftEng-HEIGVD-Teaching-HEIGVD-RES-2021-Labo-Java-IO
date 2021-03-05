@@ -1,5 +1,8 @@
 package ch.heigvd.res.labio.quotes;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
@@ -9,8 +12,11 @@ import java.util.List;
  * source. When using the QuoteClient, you retrieve instances of this class.
  *
  * @author Olivier Liechti
+ * @author Daniel Palumbo
  */
 
+@Getter
+@Setter
 public class Quote implements Serializable {
 
   /**
@@ -19,36 +25,13 @@ public class Quote implements Serializable {
    * handled automatically for us. This is something that we will see in the
    * AMT course next year.
    */
+  @Getter
+  @Setter
   public class Value {
 
     private long id;
     private String joke;
     private String[] categories;
-
-    public long getId() {
-      return id;
-    }
-
-    public void setId(long id) {
-      this.id = id;
-    }
-
-    public String getJoke() {
-      return joke;
-    }
-
-    public void setJoke(String joke) {
-      this.joke = joke;
-    }
-
-    public String[] getCategories() {
-      return categories;
-    }
-
-    public void setCategories(String[] categories) {
-      this.categories = categories;
-    }
-
   }
 
   /**
@@ -76,27 +59,10 @@ public class Quote implements Serializable {
     this.tags = TagsGenerator.pickRandomTags();
   }
 
-  public String getType() {
-    return type;
-  }
-
-  public void setType(String type) {
-    this.type = type;
-  }
-
-  public Value getValue() {
-    return value;
-  }
-
-  public void setValue(Value value) {
-    this.value = value;
-  }
-
   public List<String> getTags() {
     return Arrays.asList(tags);
   }
 
-  
   public String getQuote() {
 
     /*

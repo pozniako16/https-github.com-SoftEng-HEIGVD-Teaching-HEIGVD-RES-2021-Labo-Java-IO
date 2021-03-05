@@ -2,6 +2,7 @@ package ch.heigvd.res.labio.impl.explorers;
 
 import ch.heigvd.res.labio.interfaces.IFileExplorer;
 import ch.heigvd.res.labio.interfaces.IFileVisitor;
+
 import java.io.File;
 
 /**
