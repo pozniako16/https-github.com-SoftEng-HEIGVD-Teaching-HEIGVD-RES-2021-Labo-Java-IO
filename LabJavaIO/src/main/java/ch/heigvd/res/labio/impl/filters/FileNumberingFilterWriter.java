@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 public class FileNumberingFilterWriter extends FilterWriter {
 
   private static final Logger LOG = Logger.getLogger(FileNumberingFilterWriter.class.getName());
+  private int lineCount = 1;
 
   public FileNumberingFilterWriter(Writer out) {
     super(out);
@@ -36,6 +37,17 @@ public class FileNumberingFilterWriter extends FilterWriter {
   @Override
   public void write(int c) throws IOException {
     throw new UnsupportedOperationException("The student has not implemented this method yet.");
+  }
+
+  public void write(String s) throws IOException {
+    LOG.
+    for (int i = 0; i < s.length(); ++i) {
+      super.write(s.charAt(i));
+      if (s.charAt(i) == '\n') {
+        super.write('1'+lineCount++);
+        super.write('\t');
+      }
+    }
   }
 
 }
