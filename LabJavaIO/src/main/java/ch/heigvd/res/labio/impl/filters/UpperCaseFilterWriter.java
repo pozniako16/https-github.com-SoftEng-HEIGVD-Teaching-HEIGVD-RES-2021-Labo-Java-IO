@@ -16,7 +16,7 @@ public class UpperCaseFilterWriter extends FilterWriter {
   public UpperCaseFilterWriter(Writer wrappedWriter) {
     super(wrappedWriter);
   }
-  
+
   @Override
   public void write(String str, int off, int len) throws IOException {
     this.write(str.substring(off, off+len));
