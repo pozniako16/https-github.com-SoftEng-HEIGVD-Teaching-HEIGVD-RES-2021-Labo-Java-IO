@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author Olivier Liechti
+ * [WIP]
  */
 public class Utils {
 
@@ -20,7 +21,32 @@ public class Utils {
    * contain any line separator, then the first element is an empty string.
    */
   public static String[] getNextLine(String lines) {
-    throw new UnsupportedOperationException("The student has not implemented this method yet.");
-  }
+    boolean foundSeparator = false;
+    int limitIndex = 0;
+    for (int i = 0; i < lines.length() && !foundSeparator; ++i) {
+      if (lines.charAt(i) == '\r') {
+        if (i <= lines.length() - 2 && lines.charAt(i + 1) == '\n')
+          ++i;
+        else {
+          foundSeparator = true;
+          limitIndex = i;
+        }
+      }
+      if (lines.charAt(i) == '\n') {
+        foundSeparator = true;
+        limitIndex = i;
+      }
+    }
 
+    String[] output = {"", ""};
+    if (limitIndex == lines.length() - 1)
+      output[0] = lines;
+    else if (!foundSeparator)
+      output[1] = lines;
+    else {
+      output[0] = lines.substring(0, limitIndex+1);
+      output[1] = lines.substring(limitIndex+1, lines.length());
+    }
+    return output;
+  }
 }
