@@ -45,7 +45,7 @@ public class FileNumberingFilterWriter extends FilterWriter {
     if(isFirstChar) {
       this.writeMultipleDigitsNumber(lineCount++);
       super.write('\t');
-      isFirstChar = false; 
+      isFirstChar = false;
     }
 
     if(c == '\n' || lastChar == '\r') {
