@@ -9,7 +9,7 @@ import java.util.logging.Logger;
  * This class transforms the streams of character sent to the decorated writer.
  * When filter encounters a line separator, it sends it to the decorated writer.
  * It then sends the line number and a tab character, before resuming the write
- * process.
+ * process.gg
  *
  * Hello\n\World -> 1\Hello\n2\tWorld
  *
@@ -40,7 +40,7 @@ public class FileNumberingFilterWriter extends FilterWriter {
   }
 
   public void write(String s) throws IOException {
-    LOG.
+
     for (int i = 0; i < s.length(); ++i) {
       super.write(s.charAt(i));
       if (s.charAt(i) == '\n') {
