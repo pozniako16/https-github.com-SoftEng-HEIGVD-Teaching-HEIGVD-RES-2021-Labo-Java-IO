@@ -14,7 +14,7 @@ import java.io.File;
  * @author Olivier Liechti
  */
 public class DFSFileExplorer implements IFileExplorer {
-
+//to do merge
   @Override
   public void explore(File rootDirectory, IFileVisitor vistor) {
     //on récupère la liste des fichiers et répertoire
