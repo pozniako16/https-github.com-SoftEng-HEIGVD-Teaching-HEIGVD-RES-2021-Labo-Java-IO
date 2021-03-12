@@ -2,6 +2,8 @@ package ch.heigvd.res.labio.impl.explorers;
 import ch.heigvd.res.labio.interfaces.IFileExplorer;
 import ch.heigvd.res.labio.interfaces.IFileVisitor;
 import java.io.File;
+import java.util.Arrays;
+
 /**
  * This implementation of the IFileExplorer interface performs a depth-first
  * exploration of the file system and invokes the visitor for every encountered
@@ -20,6 +22,7 @@ public class DFSFileExplorer implements IFileExplorer {
         File[] listOfFileAndDir = rootDirectory.listFiles();
         if (listOfFileAndDir == null) //si le repertoire est vide, on quitte
             return;
+        Arrays.sort(listOfFileAndDir);
         for (File file : listOfFileAndDir) {
             explore(file, vistor); //si on a un repertoire, on le visite
         }

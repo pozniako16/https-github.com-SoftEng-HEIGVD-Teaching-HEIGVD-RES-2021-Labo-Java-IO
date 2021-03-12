@@ -9,11 +9,9 @@ import ch.heigvd.res.labio.quotes.Quote;
 import ch.heigvd.res.labio.quotes.QuoteClient;
 import org.apache.commons.io.FileUtils;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.StringWriter;
-import java.io.Writer;
+import java.io.*;
 import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -92,6 +90,7 @@ public class Application implements IApplication {
         e.printStackTrace();
       }
       if (quote != null) {
+        storeQuote(quote, "quote-" + (i + 1) + ".utf8" );
         /* There is a missing piece here!
          * As you can see, this method handles the first part of the lab. It uses the web service
          * client to fetch quotes. We have removed a single line from this method. It is a call to
@@ -133,7 +132,18 @@ public class Application implements IApplication {
    * @throws IOException 
    */
   void storeQuote(Quote quote, String filename) throws IOException {
-    throw new UnsupportedOperationException("The student has not implemented this method yet.");
+    String tmp = new String();
+    for(String tag : quote.getTags())
+      tmp += "/" + tag;
+    tmp += "/";
+    File f = new File(WORKSPACE_DIRECTORY + tmp, filename);
+    f.getParentFile().mkdirs();
+    f.createNewFile();
+
+    BufferedWriter writer =
+            new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), StandardCharsets.UTF_8));
+    writer.write(quote.getQuote());
+    writer.close();
   }
   
   /**
@@ -145,6 +155,11 @@ public class Application implements IApplication {
     explorer.explore(new File(WORKSPACE_DIRECTORY), new IFileVisitor() {
       @Override
       public void visit(File file) {
+        try {
+          writer.write(file.getPath().replace('\\','/') + '\n');
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
         /*
          * There is a missing piece here. Notice how we use an anonymous class here. We provide the implementation
          * of the the IFileVisitor interface inline. You just have to add the body of the visit method, which should
