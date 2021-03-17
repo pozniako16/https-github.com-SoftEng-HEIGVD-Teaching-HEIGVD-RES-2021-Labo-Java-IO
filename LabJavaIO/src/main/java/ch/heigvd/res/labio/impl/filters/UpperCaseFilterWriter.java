@@ -22,6 +22,7 @@ public class UpperCaseFilterWriter extends FilterWriter {
     this.write(str.substring(off, off+len));
   }
 
+  //faire vérification des paramètre
   @Override
   public void write(char[] cbuf, int off, int len) throws IOException {
     for(int i = off; i<off+len; ++i)
