@@ -18,6 +18,7 @@ public class CompleteFileTransformer extends FileTransformer {
 
   @Override
   public Writer decorateWithFilters(Writer writer) {
+    //on applique les filtres
     writer = new FileNumberingFilterWriter(new UpperCaseFilterWriter(writer));
     return writer; 
   }

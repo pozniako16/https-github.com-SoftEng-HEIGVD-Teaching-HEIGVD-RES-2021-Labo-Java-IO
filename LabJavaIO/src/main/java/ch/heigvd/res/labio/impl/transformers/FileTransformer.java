@@ -48,7 +48,7 @@ public abstract class FileTransformer implements IFileVisitor {
       writer = decorateWithFilters(writer);
 
       int b = reader.read();
-      while (b != -1){
+      while (b != -1){ // on écrit caractère par caractère en utilisant le filtre
         writer.write(b);
         b = reader.read();
       }

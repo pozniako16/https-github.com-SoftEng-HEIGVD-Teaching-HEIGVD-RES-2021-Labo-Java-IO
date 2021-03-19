@@ -17,15 +17,15 @@ public class DFSFileExplorer implements IFileExplorer {
 
     @Override
     public void explore(File rootDirectory, IFileVisitor vistor) {
-        //on récupère la liste des fichiers et répertoire
+        //on visite tous les fichiers (même les repos)
         vistor.visit(rootDirectory);
+        //on récupère la liste des fichiers et répertoire enfant
         File[] listOfFileAndDir = rootDirectory.listFiles();
-        if (listOfFileAndDir == null) //si le repertoire est vide, on quitte
+        if (listOfFileAndDir == null) //si pas d'enfant, on quitte
             return;
         Arrays.sort(listOfFileAndDir);
         for (File file : listOfFileAndDir) {
             explore(file, vistor); //si on a un repertoire, on le visite
         }
-        //throw new UnsupportedOperationException("The student has not implemented this method yet.");
     }
 }

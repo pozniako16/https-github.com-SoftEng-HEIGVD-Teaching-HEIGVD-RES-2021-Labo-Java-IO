@@ -13,6 +13,7 @@ public class NoOpFileTransformer extends FileTransformer {
 
   @Override
   public Writer decorateWithFilters(Writer writer) {
+    //on a aucun filtre à appliquer sur le write, donc on fait rien.
     return writer;
   }
 
