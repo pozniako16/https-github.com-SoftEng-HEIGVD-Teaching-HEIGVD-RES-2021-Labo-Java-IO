@@ -8,7 +8,7 @@ import java.io.Writer;
  *
  * @author Olivier Liechti
  * Modified by Lev POZNIAKOFF
- *
+ * This class allows its user to convert a string into an uppercase string
  * DATE: 05.03.2021
  */
 public class UpperCaseFilterWriter extends FilterWriter {
