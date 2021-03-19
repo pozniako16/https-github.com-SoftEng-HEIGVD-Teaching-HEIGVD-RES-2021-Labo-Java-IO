@@ -45,7 +45,7 @@ public class Utils {
       output[1] = lines;
     else {
       output[0] = lines.substring(0, limitIndex+1);
-      output[1] = lines.substring(limitIndex+1, lines.length());
+      output[1] = lines.substring(limitIndex+1);
     }
     return output;
   }
