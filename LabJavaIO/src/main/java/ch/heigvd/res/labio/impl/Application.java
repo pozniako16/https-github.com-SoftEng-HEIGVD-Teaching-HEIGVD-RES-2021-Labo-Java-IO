@@ -126,7 +126,7 @@ public class Application implements IApplication {
      * @throws IOException
      */
     void storeQuote(Quote quote, String filename) throws IOException {
-        String tmp = new String();
+        String tmp = "";
         for (String tag : quote.getTags())
             tmp += "/" + tag;
         tmp += "/";
